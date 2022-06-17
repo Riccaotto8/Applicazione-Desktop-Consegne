@@ -32,7 +32,6 @@ namespace ServizioConsegne
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.delateRow = new System.Windows.Forms.Button();
             this.addRow = new System.Windows.Forms.Button();
@@ -41,11 +40,10 @@ namespace ServizioConsegne
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.prodottoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prodottoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -56,6 +54,7 @@ namespace ServizioConsegne
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -65,6 +64,7 @@ namespace ServizioConsegne
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(530, 450);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellClick);
@@ -162,6 +162,10 @@ namespace ServizioConsegne
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome prodotto\r\n";
             // 
+            // prodottoBindingSource1
+            // 
+            this.prodottoBindingSource1.DataSource = typeof(ServizioConsegne.Prodotto);
+            // 
             // nomeProdottoDataGridViewTextBoxColumn
             // 
             this.nomeProdottoDataGridViewTextBoxColumn.DataPropertyName = "NomeProdotto";
@@ -176,10 +180,6 @@ namespace ServizioConsegne
             this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
             this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // prodottoBindingSource1
-            // 
-            this.prodottoBindingSource1.DataSource = typeof(ServizioConsegne.Prodotto);
-            // 
             // Administrator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,7 +190,6 @@ namespace ServizioConsegne
             this.Name = "Administrator";
             this.Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -204,9 +203,6 @@ namespace ServizioConsegne
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource prodottoBindingSource1;
-        private System.Windows.Forms.BindingSource prodottoBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeProdottoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prezzoProdottoDataGridViewTextBoxColumn;
         private SplitContainer splitContainer1;
         private Label label2;
         private Label label1;
@@ -215,5 +211,7 @@ namespace ServizioConsegne
         private TextBox textBox2;
         private Button delateRow;
         private Button addRow;
+        private DataGridViewTextBoxColumn nomeProdottoDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn prezzoProdottoDataGridViewTextBoxColumn;
     }
 }

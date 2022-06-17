@@ -30,8 +30,8 @@ namespace ServizioConsegne
                 {
                     var Prodotto = new Prodotto
                     {
-                        Name = (string)row["NomeProdotto"],
-                        Prezzo = Convert.ToDecimal(row["Prezzo"])
+                        NomeProdotto = (string)row["NomeProdotto"],
+                        PrezzoProdotto = Convert.ToDecimal(row["Prezzo"])
                     };
                     prodotti.Add(Prodotto);
                 }
@@ -57,38 +57,16 @@ namespace ServizioConsegne
             var preName = newDataRow.Cells[0].Value;
             var prePrice = newDataRow.Cells[1].Value;
 
-            /*using (var connection = new SqlConnection(connString))
+            using (var connection = new SqlConnection(connString))
             {
-                var update = new SqlCommand("UPDATE Menu SET NomeProdotto = @nome, Prezzo = @prezzo WHERE IDRow = @ind", connection);
+                var update = new SqlCommand("UPDATE Menu SET NomeProdotto = @nome, Prezzo = @prezzo WHERE IDRow = @id", connection);
                 update.Parameters.AddWithValue("nome", textBox1.Text);
                 update.Parameters.AddWithValue("prezzo", Convert.ToDecimal(textBox2.Text));
-                update.Parameters.AddWithValue("ind", indexKey);
+                //update.Parameters.AddWithValue("id", prodotto.chiave);
 
                 connection.Open();
 
                 update.ExecuteNonQuery();
-
-                connection.Close();
-            }*/
-
-
-            using (var connection = new SqlConnection(connString))
-            {
-                var update = new SqlCommand("UPDATE Menu SET NomeProdotto = @nome, Prezzo = @prezzo WHERE NomeProdotto = @preName AND Prezzo = @prePrice", connection);
-                update.Parameters.AddWithValue("nome", textBox1.Text);
-                update.Parameters.AddWithValue("prezzo", Convert.ToDecimal(textBox2.Text));
-                update.Parameters.AddWithValue("preName", preName);
-                update.Parameters.AddWithValue("prePrice", Convert.ToDecimal(prePrice));
-
-                connection.Open();
-
-                try
-                {
-                    update.ExecuteNonQuery();
-                }
-                catch (SqlException) { }
-
-                connection.Close();
             }
             newDataRow.Cells[0].Value = textBox1.Text;
             newDataRow.Cells[1].Value = textBox2.Text;
@@ -117,13 +95,14 @@ namespace ServizioConsegne
 
         private void DeleteRow_Click(object sender, EventArgs e)
         {
+            var prodotto = (Prodotto)prodottoBindingSource1.Current;
+
             using (var connection = new SqlConnection(connString))
             {
 
-                var delete = new SqlCommand("DELETE FROM Menu WHERE NomeProdotto = @nome AND Prezzo = @prezzo", connection);
-                delete.Parameters.AddWithValue("nome", textBox1.Text);
-                delete.Parameters.AddWithValue("prezzo", Convert.ToDecimal(textBox2.Text));
-
+                var delete = new SqlCommand("DELETE FROM Menu WHERE IDRow = @id", connection);
+                delete.Parameters.AddWithValue("id", prodotto.chiave);
+                
                 connection.Open();
 
                 delete.ExecuteNonQuery();

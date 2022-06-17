@@ -29,8 +29,8 @@ namespace ServizioConsegne
                 {
                     var Prodotto = new Prodotto
                     {
-                        Name = (string)row["NomeProdotto"],
-                        Prezzo = Convert.ToDecimal(row["Prezzo"])
+                        NomeProdotto = (string)row["NomeProdotto"],
+                        PrezzoProdotto = Convert.ToDecimal(row["Prezzo"])
                     };
                     prodotti.Add(Prodotto);
                 }
