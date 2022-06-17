@@ -104,23 +104,14 @@ namespace ServizioConsegne
             using (var connection = new SqlConnection(connString))
             {
 
-                var add = new SqlCommand("INSERT INTO Menu(NomeProdotto, Prezzo) VALUES (@nome, @prezzo)", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
+                var add = new SqlCommand("INSERT INTO Menu(NomeProdotto, Prezzo) VALUES (@nome, @prezzo)", connection);
                 add.Parameters.AddWithValue("nome", textBox1.Text);
                 add.Parameters.AddWithValue("prezzo", Convert.ToDecimal(textBox2.Text));
                 
 
                 connection.Open();
 
-                try
-                {
-                    add.ExecuteNonQuery();
-                }
-                catch (SqlException) {}
-
-                connection.Close();
+                add.ExecuteNonQuery();
             }
         }
 
@@ -136,8 +127,6 @@ namespace ServizioConsegne
                 connection.Open();
 
                 delete.ExecuteNonQuery();
-
-                connection.Close();
             }
         }
     }
