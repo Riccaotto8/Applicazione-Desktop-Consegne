@@ -25,55 +25,42 @@ namespace ServizioConsegne
 
             if ((textBox1.Text == "Admin") && (textBox2.Text == "1234"))
             {
-                using (var connection = new SqlConnection(connString))
+
+                /*using (var connection = new SqlConnection(connString))
                 {
-                    var crono = new SqlCommand("INSERT INTO RegistroLog (TipoUtente, Orario) VALUES (@user, @time)", connection)
-                    {
-                        CommandType = CommandType.StoredProcedure
-                    };
+                    var crono = new SqlCommand("INSERT INTO RegistroLog (TipoUtente, Orario) VALUES (@user, @time)", connection);
                     crono.Parameters.AddWithValue("user", "administrator");
                     crono.Parameters.AddWithValue("time", timeStamp);
 
 
                     connection.Open();
 
-                    try
-                    {
-                        crono.ExecuteNonQuery();
-                    }
-                    catch (SqlException) { }
+                    crono.ExecuteNonQuery();
+                }*/
 
-                    connection.Close();
-                }
-
+                Hide();
                 var admin = new Administrator();
-                admin.Show();
+                admin.ShowDialog();
+                Close();
             }
             else
             {
-                using (var connection = new SqlConnection(connString))
+                /*using (var connection = new SqlConnection(connString))
                 {
-                    var crono = new SqlCommand("INSERT INTO RegistroLog (TipoUtente, Orario) VALUES (@user, @time)", connection)
-                    {
-                        CommandType = CommandType.StoredProcedure
-                    };
+                    var crono = new SqlCommand("INSERT INTO RegistroLog (TipoUtente, Orario) VALUES (@user, @time)", connection);
                     crono.Parameters.AddWithValue("user", "user");
                     crono.Parameters.AddWithValue("time", timeStamp);
 
 
                     connection.Open();
 
-                    try
-                    {
-                        crono.ExecuteNonQuery();
-                    }
-                    catch (SqlException) { }
+                    crono.ExecuteNonQuery();
+                }*/
 
-                    connection.Close();
-                }
-
+                Hide();
                 var user = new User();
-                user.Show();
+                user.ShowDialog();
+                Close();
             }
         }
 

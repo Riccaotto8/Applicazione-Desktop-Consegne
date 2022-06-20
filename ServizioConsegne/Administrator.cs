@@ -32,7 +32,7 @@ namespace ServizioConsegne
                     {
                         NomeProdotto = (string)row["NomeProdotto"],
                         PrezzoProdotto = Convert.ToDecimal(row["Prezzo"]),
-                        chiave = Convert.ToInt32(row["IDRow"])
+                        Chiave = Convert.ToInt32(row["IDRow"])
                     };
                     prodotti.Add(Prodotto);
                 }
@@ -43,16 +43,17 @@ namespace ServizioConsegne
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             indexRow = e.RowIndex;
-            DataGridViewRow row = dataGridView1.Rows[indexRow];
+            if (indexRow > 0)
+            {
+                DataGridViewRow row = dataGridView1.Rows[indexRow];
 
-            textBox1.Text = row.Cells[0].Value.ToString();
-            textBox2.Text = row.Cells[1].Value.ToString();
+                textBox1.Text = row.Cells[0].Value.ToString();
+                textBox2.Text = row.Cells[1].Value.ToString();
+            }
         }
 
         private void Update_Click(object sender, EventArgs e)
         {
-           
-
             DataGridViewRow newDataRow = dataGridView1.Rows[indexRow];
 
             newDataRow.Cells[0].Value = textBox1.Text;
@@ -65,7 +66,7 @@ namespace ServizioConsegne
                 var update = new SqlCommand("UPDATE Menu SET NomeProdotto = @nome, Prezzo = @prezzo WHERE IDRow = @id", connection);
                 update.Parameters.AddWithValue("nome", textBox1.Text);
                 update.Parameters.AddWithValue("prezzo", Convert.ToDecimal(textBox2.Text));
-                update.Parameters.AddWithValue("id", prodotto.chiave);
+                update.Parameters.AddWithValue("id", prodotto.Chiave);
 
                 connection.Open();
 
@@ -75,44 +76,27 @@ namespace ServizioConsegne
             }
         }
 
-        private void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void AddRow_Click(object sender, EventArgs e)
         {
             using (var connection = new SqlConnection(connString))
             {
 
-                var add = new SqlCommand("INSERT INTO Menu(NomeProdotto, Prezzo) VALUES (@nome, @prezzo)", connection);
+                var add = new SqlCommand("INSERT INTO Menu(NomeProdotto, Prezzo) VALUES (@nome, @prezzo, (SELECT * FROM OPENROWSET(BULK N'C:\Utenti\ut02\Download\pizza1.jpg')", connection);
                 add.Parameters.AddWithValue("nome", textBox1.Text);
                 add.Parameters.AddWithValue("prezzo", Convert.ToDecimal(textBox2.Text));
+                add.Parameters.AddWithValue("img", Convert.ToDecimal(textBox2.Text));
 
                 connection.Open();
 
-                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Menu", connection);
-                var dataTable = new DataTable();
-                sqlAdapter.Fill(dataTable);
-
-                var prodotti = new List<Prodotto>();
-                foreach (DataRow row in dataTable.Rows)
+                var prodotto = new Prodotto
                 {
-                    var Prodotto = new Prodotto
-                    {
-                        NomeProdotto = (string)row["NomeProdotto"],
-                        PrezzoProdotto = Convert.ToDecimal(row["Prezzo"]),
-                        chiave = Convert.ToInt32(row["IDRow"])
-                    };
-                    prodotti.Add(Prodotto);
-                }
-                prodottoBindingSource1.DataSource = prodotti;
+                    NomeProdotto = textBox1.Text,
+                    PrezzoProdotto = Convert.ToDecimal(textBox2.Text)
+                };
 
-                prodottoBindingSource1.ResetBindings(true);
+                prodottoBindingSource1.Add(prodotto);
 
                 add.ExecuteNonQuery();
-
-
             }
         }
 
@@ -124,8 +108,8 @@ namespace ServizioConsegne
             {
 
                 var delete = new SqlCommand("DELETE FROM Menu WHERE IDRow = @id", connection);
-                delete.Parameters.AddWithValue("id", prodotto.chiave);
-                
+                delete.Parameters.AddWithValue("id", prodotto.Chiave);
+
                 connection.Open();
 
                 delete.ExecuteNonQuery();

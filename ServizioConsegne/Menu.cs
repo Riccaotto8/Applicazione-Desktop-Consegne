@@ -17,10 +17,10 @@ namespace ServizioConsegne
         public Menu()
         {
             InitializeComponent();
-            using (var conn = new SqlConnection(connString))
+            using (var connection = new SqlConnection(connString))
             {
-                conn.Open();
-                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Menu", conn);
+                connection.Open();
+                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Menu", connection);
                 var dataTable = new DataTable();
                 sqlAdapter.Fill(dataTable);
 
@@ -40,8 +40,34 @@ namespace ServizioConsegne
 
         private void Home_Click(object sender, EventArgs e)
         {
+            Hide();
             var home = new User();
-            home.Show();
+            home.ShowDialog();
+            Close();
+        }
+
+        private void Cart_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var cart = new Cart();
+            cart.ShowDialog();
+            Close();
+        }
+
+        private void Assistance_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var assistance = new Assistance();
+            assistance.ShowDialog();
+            Close();
+        }
+
+        private void AddCart_Click(object sender, EventArgs e)
+        {
+            var prodotto = (Prodotto)prodottoBindingSource.Current;
+
+            var carrello = new List<Prodotto>();
+            carrello.Add(prodotto);
         }
     }
 }

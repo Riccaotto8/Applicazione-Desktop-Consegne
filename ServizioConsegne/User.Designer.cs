@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.navbarUser = new System.Windows.Forms.Panel();
+            this.Login = new System.Windows.Forms.Button();
             this.assistenza = new System.Windows.Forms.Button();
             this.carrello = new System.Windows.Forms.Button();
             this.menu = new System.Windows.Forms.Button();
             this.home = new System.Windows.Forms.Button();
-            this.Login = new System.Windows.Forms.Button();
             this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.navbarUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).BeginInit();
@@ -53,7 +53,16 @@
             this.navbarUser.Name = "navbarUser";
             this.navbarUser.Size = new System.Drawing.Size(163, 568);
             this.navbarUser.TabIndex = 0;
-            this.navbarUser.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
+            // 
+            // Login
+            // 
+            this.Login.Location = new System.Drawing.Point(44, 12);
+            this.Login.Name = "Login";
+            this.Login.Size = new System.Drawing.Size(75, 23);
+            this.Login.TabIndex = 0;
+            this.Login.Text = "Login";
+            this.Login.UseVisualStyleBackColor = true;
+            this.Login.Click += new System.EventHandler(this.Log_Click);
             // 
             // assistenza
             // 
@@ -114,16 +123,6 @@
             this.home.Text = "Home";
             this.home.UseVisualStyleBackColor = true;
             this.home.Click += new System.EventHandler(this.Home_Click);
-            // 
-            // Login
-            // 
-            this.Login.Location = new System.Drawing.Point(44, 12);
-            this.Login.Name = "Login";
-            this.Login.Size = new System.Drawing.Size(75, 23);
-            this.Login.TabIndex = 0;
-            this.Login.Text = "Login";
-            this.Login.UseVisualStyleBackColor = true;
-            this.Login.Click += new System.EventHandler(this.Log_Click);
             // 
             // prodottoBindingSource
             // 

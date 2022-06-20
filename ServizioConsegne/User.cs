@@ -17,10 +17,10 @@ namespace ServizioConsegne
         public User()
         {
             InitializeComponent();
-            using (var conn = new SqlConnection(connString))
+            using (var connection = new SqlConnection(connString))
             {
-                conn.Open();
-                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Menu", conn);
+                connection.Open();
+                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Menu", connection);
                 var dataTable = new DataTable();
                 sqlAdapter.Fill(dataTable);
 
@@ -38,11 +38,6 @@ namespace ServizioConsegne
             }
         }
 
-        private void Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void Home_Click(object sender, EventArgs e)
         {
            
@@ -50,31 +45,34 @@ namespace ServizioConsegne
 
         private void Menu_Click(object sender, EventArgs e)
         {
+            Hide();
             var menu = new Menu();
-            menu.Show();
+            menu.ShowDialog();
+            Close();
         }
 
         private void Cart_Click(object sender, EventArgs e)
         {
+            Hide();
             var cart = new Cart();
-            cart.Show();
+            cart.ShowDialog();
+            Close();
         }
 
         private void Assistance_Click(object sender, EventArgs e)
         {
-            var assistace = new Assistance();
-            assistace.Show();
+            Hide();
+            var assistance = new Assistance();
+            assistance.ShowDialog();
+            Close();
         }
 
         private void Log_Click(object sender, EventArgs e)
         {
+            Hide();
             var login = new Form1();
-            login.Show();
-        }
-
-        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
+            login.ShowDialog();
+            Close();
         }
     }
 }

@@ -8,13 +8,12 @@ namespace ServizioConsegne
 {
     class Prodotto
     {
-        public int chiave { get; set; }
+        public int Chiave { get; set; }
         public string NomeProdotto { get; set; }
         public decimal PrezzoProdotto { get; set; }
 
-
         public Prodotto()
         {
-        } 
+        }
     }
 }
