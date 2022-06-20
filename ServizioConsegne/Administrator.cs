@@ -18,10 +18,10 @@ namespace ServizioConsegne
         public Administrator()
         {
             InitializeComponent();
-            using (var conn = new SqlConnection(connString))
+            using (var connection = new SqlConnection(connString))
             {
-                conn.Open();
-                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Menu", conn);
+                connection.Open();
+                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Menu", connection);
                 var dataTable = new DataTable();
                 sqlAdapter.Fill(dataTable);
 
@@ -31,7 +31,8 @@ namespace ServizioConsegne
                     var Prodotto = new Prodotto
                     {
                         NomeProdotto = (string)row["NomeProdotto"],
-                        PrezzoProdotto = Convert.ToDecimal(row["Prezzo"])
+                        PrezzoProdotto = Convert.ToDecimal(row["Prezzo"]),
+                        chiave = Convert.ToInt32(row["IDRow"])
                     };
                     prodotti.Add(Prodotto);
                 }
@@ -54,22 +55,24 @@ namespace ServizioConsegne
 
             DataGridViewRow newDataRow = dataGridView1.Rows[indexRow];
 
-            var preName = newDataRow.Cells[0].Value;
-            var prePrice = newDataRow.Cells[1].Value;
+            newDataRow.Cells[0].Value = textBox1.Text;
+            newDataRow.Cells[1].Value = textBox2.Text;
+
+            var prodotto = (Prodotto)prodottoBindingSource1.Current;
 
             using (var connection = new SqlConnection(connString))
             {
                 var update = new SqlCommand("UPDATE Menu SET NomeProdotto = @nome, Prezzo = @prezzo WHERE IDRow = @id", connection);
                 update.Parameters.AddWithValue("nome", textBox1.Text);
                 update.Parameters.AddWithValue("prezzo", Convert.ToDecimal(textBox2.Text));
-                //update.Parameters.AddWithValue("id", prodotto.chiave);
+                update.Parameters.AddWithValue("id", prodotto.chiave);
 
                 connection.Open();
 
                 update.ExecuteNonQuery();
+
+                prodottoBindingSource1.EndEdit();
             }
-            newDataRow.Cells[0].Value = textBox1.Text;
-            newDataRow.Cells[1].Value = textBox2.Text;
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -85,11 +88,31 @@ namespace ServizioConsegne
                 var add = new SqlCommand("INSERT INTO Menu(NomeProdotto, Prezzo) VALUES (@nome, @prezzo)", connection);
                 add.Parameters.AddWithValue("nome", textBox1.Text);
                 add.Parameters.AddWithValue("prezzo", Convert.ToDecimal(textBox2.Text));
-                
 
                 connection.Open();
 
+                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Menu", connection);
+                var dataTable = new DataTable();
+                sqlAdapter.Fill(dataTable);
+
+                var prodotti = new List<Prodotto>();
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    var Prodotto = new Prodotto
+                    {
+                        NomeProdotto = (string)row["NomeProdotto"],
+                        PrezzoProdotto = Convert.ToDecimal(row["Prezzo"]),
+                        chiave = Convert.ToInt32(row["IDRow"])
+                    };
+                    prodotti.Add(Prodotto);
+                }
+                prodottoBindingSource1.DataSource = prodotti;
+
+                prodottoBindingSource1.ResetBindings(true);
+
                 add.ExecuteNonQuery();
+
+
             }
         }
 
@@ -106,6 +129,8 @@ namespace ServizioConsegne
                 connection.Open();
 
                 delete.ExecuteNonQuery();
+
+                prodottoBindingSource1.Remove(prodottoBindingSource1.Current);
             }
         }
     }

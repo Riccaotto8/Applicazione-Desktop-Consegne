@@ -32,6 +32,9 @@ namespace ServizioConsegne
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prodottoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.delateRow = new System.Windows.Forms.Button();
             this.addRow = new System.Windows.Forms.Button();
@@ -40,15 +43,12 @@ namespace ServizioConsegne
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.prodottoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -68,6 +68,24 @@ namespace ServizioConsegne
             this.dataGridView1.Size = new System.Drawing.Size(530, 450);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellClick);
+            // 
+            // nomeProdottoDataGridViewTextBoxColumn
+            // 
+            this.nomeProdottoDataGridViewTextBoxColumn.DataPropertyName = "NomeProdotto";
+            this.nomeProdottoDataGridViewTextBoxColumn.HeaderText = "NomeProdotto";
+            this.nomeProdottoDataGridViewTextBoxColumn.Name = "nomeProdottoDataGridViewTextBoxColumn";
+            this.nomeProdottoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // prezzoProdottoDataGridViewTextBoxColumn
+            // 
+            this.prezzoProdottoDataGridViewTextBoxColumn.DataPropertyName = "PrezzoProdotto";
+            this.prezzoProdottoDataGridViewTextBoxColumn.HeaderText = "PrezzoProdotto";
+            this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
+            this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // prodottoBindingSource1
+            // 
+            this.prodottoBindingSource1.DataSource = typeof(ServizioConsegne.Prodotto);
             // 
             // splitContainer1
             // 
@@ -162,40 +180,22 @@ namespace ServizioConsegne
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome prodotto\r\n";
             // 
-            // prodottoBindingSource1
-            // 
-            this.prodottoBindingSource1.DataSource = typeof(ServizioConsegne.Prodotto);
-            // 
-            // nomeProdottoDataGridViewTextBoxColumn
-            // 
-            this.nomeProdottoDataGridViewTextBoxColumn.DataPropertyName = "NomeProdotto";
-            this.nomeProdottoDataGridViewTextBoxColumn.HeaderText = "NomeProdotto";
-            this.nomeProdottoDataGridViewTextBoxColumn.Name = "nomeProdottoDataGridViewTextBoxColumn";
-            this.nomeProdottoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // prezzoProdottoDataGridViewTextBoxColumn
-            // 
-            this.prezzoProdottoDataGridViewTextBoxColumn.DataPropertyName = "PrezzoProdotto";
-            this.prezzoProdottoDataGridViewTextBoxColumn.HeaderText = "PrezzoProdotto";
-            this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
-            this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // Administrator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Administrator";
             this.Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
