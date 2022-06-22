@@ -35,19 +35,18 @@
             this.button1 = new System.Windows.Forms.Button();
             this.home = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ImmagineProdotto = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Quantita = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Aggiungi = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ImmagineProdotto = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Aggiungi = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -132,7 +131,6 @@
             this.nomeProdottoDataGridViewTextBoxColumn,
             this.prezzoProdottoDataGridViewTextBoxColumn,
             this.ImmagineProdotto,
-            this.Quantita,
             this.Aggiungi});
             this.dataGridView1.DataSource = this.prodottoBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -143,26 +141,37 @@
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
             // 
-            // ImmagineProdotto
+            // panel2
             // 
-            this.ImmagineProdotto.DataPropertyName = "ImmagineProdotto";
-            this.ImmagineProdotto.HeaderText = "ImmagineProdotto";
-            this.ImmagineProdotto.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.ImmagineProdotto.Name = "ImmagineProdotto";
-            this.ImmagineProdotto.ReadOnly = true;
+            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(163, 468);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(843, 100);
+            this.panel2.TabIndex = 3;
             // 
-            // Quantita
+            // textBox1
             // 
-            this.Quantita.DataPropertyName = "Chiave";
-            this.Quantita.HeaderText = "Quantita";
-            this.Quantita.Name = "Quantita";
-            this.Quantita.ReadOnly = true;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(164, 44);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(82, 23);
+            this.textBox1.TabIndex = 1;
             // 
-            // Aggiungi
+            // label1
             // 
-            this.Aggiungi.HeaderText = "Aggiungi";
-            this.Aggiungi.Name = "Aggiungi";
-            this.Aggiungi.ReadOnly = true;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(90, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Quantità";
+            // 
+            // prodottoBindingSource
+            // 
+            this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
             // 
             // nomeProdottoDataGridViewTextBoxColumn
             // 
@@ -178,37 +187,19 @@
             this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
             this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // prodottoBindingSource
+            // ImmagineProdotto
             // 
-            this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
+            this.ImmagineProdotto.DataPropertyName = "ImmagineProdotto";
+            this.ImmagineProdotto.HeaderText = "ImmagineProdotto";
+            this.ImmagineProdotto.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.ImmagineProdotto.Name = "ImmagineProdotto";
+            this.ImmagineProdotto.ReadOnly = true;
             // 
-            // panel2
+            // Aggiungi
             // 
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(163, 468);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(843, 100);
-            this.panel2.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(90, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Quantità";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(164, 44);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(82, 23);
-            this.textBox1.TabIndex = 1;
+            this.Aggiungi.HeaderText = "Aggiungi";
+            this.Aggiungi.Name = "Aggiungi";
+            this.Aggiungi.ReadOnly = true;
             // 
             // Menu
             // 
@@ -222,9 +213,9 @@
             this.Text = "Menu";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -238,13 +229,12 @@
         private System.Windows.Forms.Button assistenza;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource prodottoBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeProdottoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prezzoProdottoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewImageColumn ImmagineProdotto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantita;
-        private System.Windows.Forms.DataGridViewButtonColumn Aggiungi;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomeProdottoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prezzoProdottoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewImageColumn ImmagineProdotto;
+        private System.Windows.Forms.DataGridViewButtonColumn Aggiungi;
     }
 }

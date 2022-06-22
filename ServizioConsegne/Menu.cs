@@ -73,13 +73,20 @@ namespace ServizioConsegne
 
                 using (var connection = new SqlConnection(connString))
                 {
+                    var update = new SqlCommand("UPDATE Carrello SET QuantitaOrdinata += @quantit WHERE IDRow = @id", connection);
+                    update.Parameters.AddWithValue("id", prodotto.Chiave);
+                    update.Parameters.AddWithValue("quantit", Convert.ToInt16(textBox1.Text));
+
                     var add = new SqlCommand("INSERT INTO Carrello(IDRow, QuantitaOrdinata) VALUES (@id, @quantit)", connection);
                     add.Parameters.AddWithValue("id", prodotto.Chiave);
                     add.Parameters.AddWithValue("quantit", Convert.ToInt16(textBox1.Text));
 
                     connection.Open();
 
-                    add.ExecuteNonQuery();
+                    if(update.ExecuteNonQuery() == 0)
+                    {
+                        add.ExecuteNonQuery();
+                    }
                 }
             }
         }

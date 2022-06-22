@@ -111,6 +111,7 @@
     <EmbeddedResource Include="User.resx">
       <DependentUpon>User.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\Carrello.datasource" />
     <None Include="Properties\DataSources\Prodotto.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

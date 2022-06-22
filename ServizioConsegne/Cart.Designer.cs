@@ -36,17 +36,23 @@
             this.home = new System.Windows.Forms.Button();
             this.Login = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ImmagineProdotto = new System.Windows.Forms.DataGridViewImageColumn();
+            this.carrelloBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ImmagineProdotto = new System.Windows.Forms.DataGridViewImageColumn();
+            this.QuantitaOrdinata = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Elimina = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carrelloBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,6 +142,9 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.textBox2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -143,6 +152,35 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(849, 129);
             this.panel2.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(503, 68);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(142, 31);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Resetta quantità";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.ResetQuantity_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(357, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 17);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Quantità";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(357, 72);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 23);
+            this.textBox2.TabIndex = 2;
             // 
             // label1
             // 
@@ -172,8 +210,9 @@
             this.nomeProdottoDataGridViewTextBoxColumn,
             this.prezzoProdottoDataGridViewTextBoxColumn,
             this.ImmagineProdotto,
+            this.QuantitaOrdinata,
             this.Elimina});
-            this.dataGridView1.DataSource = this.prodottoBindingSource;
+            this.dataGridView1.DataSource = this.carrelloBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(157, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -182,12 +221,13 @@
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellClick);
             // 
-            // ImmagineProdotto
+            // carrelloBindingSource
             // 
-            this.ImmagineProdotto.DataPropertyName = "ImmagineProdotto";
-            this.ImmagineProdotto.HeaderText = "ImmagineProdotto";
-            this.ImmagineProdotto.Name = "ImmagineProdotto";
-            this.ImmagineProdotto.ReadOnly = true;
+            this.carrelloBindingSource.DataSource = typeof(ServizioConsegne.Carrello);
+            // 
+            // prodottoBindingSource
+            // 
+            this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
             // 
             // nomeProdottoDataGridViewTextBoxColumn
             // 
@@ -203,9 +243,20 @@
             this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
             this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // prodottoBindingSource
+            // ImmagineProdotto
             // 
-            this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
+            this.ImmagineProdotto.DataPropertyName = "ImmagineProdotto";
+            this.ImmagineProdotto.HeaderText = "ImmagineProdotto";
+            this.ImmagineProdotto.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.ImmagineProdotto.Name = "ImmagineProdotto";
+            this.ImmagineProdotto.ReadOnly = true;
+            // 
+            // QuantitaOrdinata
+            // 
+            this.QuantitaOrdinata.DataPropertyName = "QuantitaOrdinata";
+            this.QuantitaOrdinata.HeaderText = "QuantitaOrdinata";
+            this.QuantitaOrdinata.Name = "QuantitaOrdinata";
+            this.QuantitaOrdinata.ReadOnly = true;
             // 
             // Elimina
             // 
@@ -227,6 +278,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carrelloBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -244,10 +296,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource prodottoBindingSource;
+        private System.Windows.Forms.BindingSource carrelloBindingSource;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeProdottoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn prezzoProdottoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource prodottoBindingSource;
         private System.Windows.Forms.DataGridViewImageColumn ImmagineProdotto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantitaOrdinata;
         private System.Windows.Forms.DataGridViewButtonColumn Elimina;
     }
 }

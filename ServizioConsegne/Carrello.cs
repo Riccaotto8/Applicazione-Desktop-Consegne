@@ -14,5 +14,9 @@ namespace ServizioConsegne
         public decimal PrezzoProdotto { get; set; }
         public Bitmap ImmagineProdotto { get; set; }
         public int QuantitaOrdinata { get; set; }
+
+        public Carrello()
+        {
+        }
     }
 }

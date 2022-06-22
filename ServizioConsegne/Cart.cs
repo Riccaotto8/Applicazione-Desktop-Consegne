@@ -18,7 +18,7 @@ namespace ServizioConsegne
             using (var connection = new SqlConnection(connString))
             {
                 connection.Open();
-                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Carrello JOIN Menu USING(IDRow)", connection);
+                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Menu INNER JOIN Carrello ON Menu.IDRow = Carrello.IDRow", connection);
                 var dataTable = new DataTable();
                 sqlAdapter.Fill(dataTable);
 
@@ -36,10 +36,11 @@ namespace ServizioConsegne
                         QuantitaOrdinata = Convert.ToInt16(row["QuantitaOrdinata"])
                     };
                     carrello.Add(Carrello);
-                    tot += Convert.ToDecimal(row["PrezzoProdotto"]);
+                    tot += Convert.ToDecimal(row["PrezzoProdotto"]) * Convert.ToDecimal(row["QuantitaOrdinata"]);
+                    
                 }
                 textBox1.Text = tot.ToString();
-                prodottoBindingSource.DataSource = carrello;
+                carrelloBindingSource.DataSource = carrello;
             }
         }
 
@@ -85,28 +86,49 @@ namespace ServizioConsegne
 
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            
             var senderGrid = (DataGridView)sender;
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-                var prodotto = (Prodotto)prodottoBindingSource.Current;
+                var carrello = (Carrello)carrelloBindingSource.Current;
+
+                textBox2.Text = carrello.QuantitaOrdinata.ToString();
 
                 using (var connection = new SqlConnection(connString))
                 {
 
-                    var delete = new SqlCommand("DELETE FROM Carrello JOIN Menu USING(IDRow) WHERE IDRow = @id", connection);
-                    delete.Parameters.AddWithValue("id", prodotto.Chiave);
+                    var delete = new SqlCommand("DELETE FROM Carrello WHERE IDRow = @id", connection);
+                    delete.Parameters.AddWithValue("id", carrello.Chiave);
 
-                    tot -= prodotto.PrezzoProdotto;
+                    tot -= carrello.PrezzoProdotto * carrello.QuantitaOrdinata;
                     textBox1.Text = tot.ToString();
 
                     connection.Open();
 
                     delete.ExecuteNonQuery();
 
-                    prodottoBindingSource.Remove(prodottoBindingSource.Current);
+                    carrelloBindingSource.Remove(carrelloBindingSource.Current);
                 }
+            }
+        }
+
+        private void ResetQuantity_Click(object sender, EventArgs e)
+        {
+            var carrello = (Carrello)carrelloBindingSource.Current;
+
+            using (var connection = new SqlConnection(connString))
+            {
+                var update = new SqlCommand("UPDATE Carrello SET QuantitaOrdinata = @quantit WHERE IDRow = @id", connection);
+                update.Parameters.AddWithValue("quantit", Convert.ToInt16(textBox2.Text));
+                update.Parameters.AddWithValue("id", carrello.Chiave);
+
+                connection.Open();
+
+                update.ExecuteNonQuery();
+
+                prodottoBindingSource.EndEdit();
             }
         }
     }
