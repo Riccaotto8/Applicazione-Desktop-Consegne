@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 
 namespace ServizioConsegne
 {
@@ -36,7 +32,7 @@ namespace ServizioConsegne
                         NomeProdotto = (string)row["NomeProdotto"],
                         PrezzoProdotto = Convert.ToDecimal(row["PrezzoProdotto"]),
                         ImmagineProdotto = new Bitmap(array)
-                        
+
                     };
                     prodotti.Add(Prodotto);
                 }
@@ -56,13 +52,13 @@ namespace ServizioConsegne
             }
             catch (IndexOutOfRangeException) { }
 
-            
+
             pictureBox1.Image = ImmagineProdotto.Image;
         }
 
         private void Update_Click(object sender, EventArgs e)
         {
-            if(indexRow > 0)
+            if (indexRow > 0)
             {
                 DataGridViewRow newDataRow = dataGridView1.Rows[indexRow];
 

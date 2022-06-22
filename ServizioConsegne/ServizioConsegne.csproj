@@ -58,6 +58,7 @@
     <Compile Include="Assistance.Designer.cs">
       <DependentUpon>Assistance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Carrello.cs" />
     <Compile Include="Cart.cs">
       <SubType>Form</SubType>
     </Compile>

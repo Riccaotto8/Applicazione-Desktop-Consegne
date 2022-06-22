@@ -43,7 +43,7 @@
             this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.Elimina = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -136,7 +136,6 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -172,7 +171,8 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nomeProdottoDataGridViewTextBoxColumn,
             this.prezzoProdottoDataGridViewTextBoxColumn,
-            this.ImmagineProdotto});
+            this.ImmagineProdotto,
+            this.Elimina});
             this.dataGridView1.DataSource = this.prodottoBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(157, 0);
@@ -180,6 +180,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(849, 439);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellClick);
             // 
             // ImmagineProdotto
             // 
@@ -206,16 +207,11 @@
             // 
             this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
             // 
-            // button1
+            // Elimina
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(326, 66);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 35);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Elimina dal carrello";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Delete_Click);
+            this.Elimina.HeaderText = "Elimina";
+            this.Elimina.Name = "Elimina";
+            this.Elimina.ReadOnly = true;
             // 
             // Cart
             // 
@@ -252,6 +248,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn prezzoProdottoDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource prodottoBindingSource;
         private System.Windows.Forms.DataGridViewImageColumn ImmagineProdotto;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewButtonColumn Elimina;
     }
 }

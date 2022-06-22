@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ServizioConsegne
@@ -22,27 +18,28 @@ namespace ServizioConsegne
             using (var connection = new SqlConnection(connString))
             {
                 connection.Open();
-                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Carrello", connection);
+                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Carrello JOIN Menu USING(IDRow)", connection);
                 var dataTable = new DataTable();
                 sqlAdapter.Fill(dataTable);
 
-                
-                var prodotti = new List<Prodotto>();
+
+                var carrello = new List<Carrello>();
                 foreach (DataRow row in dataTable.Rows)
                 {
                     Stream array = new MemoryStream((byte[])row["ImmagineProdotto"]);
-                    var Prodotto = new Prodotto
+                    var Carrello = new Carrello
                     {
                         Chiave = Convert.ToInt32(row["IDRow"]),
                         NomeProdotto = (string)row["NomeProdotto"],
                         PrezzoProdotto = Convert.ToDecimal(row["PrezzoProdotto"]),
-                        ImmagineProdotto = new Bitmap(array)
+                        ImmagineProdotto = new Bitmap(array),
+                        QuantitaOrdinata = Convert.ToInt16(row["QuantitaOrdinata"])
                     };
-                    prodotti.Add(Prodotto);
+                    carrello.Add(Carrello);
                     tot += Convert.ToDecimal(row["PrezzoProdotto"]);
                 }
                 textBox1.Text = tot.ToString();
-                prodottoBindingSource.DataSource = prodotti;
+                prodottoBindingSource.DataSource = carrello;
             }
         }
 
@@ -86,24 +83,30 @@ namespace ServizioConsegne
             Close();
         }
 
-        private void Delete_Click(object sender, EventArgs e)
+        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var prodotto = (Prodotto)prodottoBindingSource.Current;
+            var senderGrid = (DataGridView)sender;
 
-            using (var connection = new SqlConnection(connString))
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
             {
+                var prodotto = (Prodotto)prodottoBindingSource.Current;
 
-                var delete = new SqlCommand("DELETE FROM Carrello WHERE IDRow = @id", connection);
-                delete.Parameters.AddWithValue("id", prodotto.Chiave);
+                using (var connection = new SqlConnection(connString))
+                {
 
-                tot -= prodotto.PrezzoProdotto;
-                textBox1.Text = tot.ToString();
+                    var delete = new SqlCommand("DELETE FROM Carrello JOIN Menu USING(IDRow) WHERE IDRow = @id", connection);
+                    delete.Parameters.AddWithValue("id", prodotto.Chiave);
 
-                connection.Open();
+                    tot -= prodotto.PrezzoProdotto;
+                    textBox1.Text = tot.ToString();
 
-                delete.ExecuteNonQuery();
+                    connection.Open();
 
-                prodottoBindingSource.Remove(prodottoBindingSource.Current);
+                    delete.ExecuteNonQuery();
+
+                    prodottoBindingSource.Remove(prodottoBindingSource.Current);
+                }
             }
         }
     }

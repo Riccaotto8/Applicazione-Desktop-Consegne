@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ServizioConsegne
@@ -66,21 +62,25 @@ namespace ServizioConsegne
             Close();
         }
 
-        private void AddCart_Click(object sender, EventArgs e)
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var prodotto = (Prodotto)prodottoBindingSource.Current;
+            var senderGrid = (DataGridView)sender;
 
-            using (var connection = new SqlConnection(connString))
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
             {
-                var add = new SqlCommand("INSERT INTO Carrello(NomeProdotto, PrezzoProdotto, ImmagineProdotto) VALUES (@nome, @prezzo, @img)", connection);
-                add.Parameters.AddWithValue("nome", prodotto.NomeProdotto);
-                add.Parameters.AddWithValue("prezzo", prodotto.PrezzoProdotto);
-                ImageConverter converter = new ImageConverter();
-                add.Parameters.AddWithValue("img", (byte[])converter.ConvertTo(prodotto.ImmagineProdotto, typeof(byte[])));
+                var prodotto = (Prodotto)prodottoBindingSource.Current;
 
-                connection.Open();
+                using (var connection = new SqlConnection(connString))
+                {
+                    var add = new SqlCommand("INSERT INTO Carrello(IDRow, QuantitaOrdinata) VALUES (@id, @quantit)", connection);
+                    add.Parameters.AddWithValue("id", prodotto.Chiave);
+                    add.Parameters.AddWithValue("quantit", Convert.ToInt16(textBox1.Text));
 
-                add.ExecuteNonQuery();
+                    connection.Open();
+
+                    add.ExecuteNonQuery();
+                }
             }
         }
     }
