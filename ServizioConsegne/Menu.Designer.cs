@@ -35,15 +35,16 @@
             this.button1 = new System.Windows.Forms.Button();
             this.home = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImmagineProdotto = new System.Windows.Forms.DataGridViewImageColumn();
+            this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -126,7 +127,8 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nomeProdottoDataGridViewTextBoxColumn,
-            this.prezzoProdottoDataGridViewTextBoxColumn});
+            this.prezzoProdottoDataGridViewTextBoxColumn,
+            this.ImmagineProdotto});
             this.dataGridView1.DataSource = this.prodottoBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(163, 0);
@@ -134,6 +136,31 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(843, 568);
             this.dataGridView1.TabIndex = 2;
+            // 
+            // nomeProdottoDataGridViewTextBoxColumn
+            // 
+            this.nomeProdottoDataGridViewTextBoxColumn.DataPropertyName = "NomeProdotto";
+            this.nomeProdottoDataGridViewTextBoxColumn.HeaderText = "NomeProdotto";
+            this.nomeProdottoDataGridViewTextBoxColumn.Name = "nomeProdottoDataGridViewTextBoxColumn";
+            this.nomeProdottoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // prezzoProdottoDataGridViewTextBoxColumn
+            // 
+            this.prezzoProdottoDataGridViewTextBoxColumn.DataPropertyName = "PrezzoProdotto";
+            this.prezzoProdottoDataGridViewTextBoxColumn.HeaderText = "PrezzoProdotto";
+            this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
+            this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ImmagineProdotto
+            // 
+            this.ImmagineProdotto.DataPropertyName = "ImmagineProdotto";
+            this.ImmagineProdotto.HeaderText = "ImmagineProdotto";
+            this.ImmagineProdotto.Name = "ImmagineProdotto";
+            this.ImmagineProdotto.ReadOnly = true;
+            // 
+            // prodottoBindingSource
+            // 
+            this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
             // 
             // panel2
             // 
@@ -154,24 +181,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.AddCart_Click);
             // 
-            // prodottoBindingSource
-            // 
-            this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
-            // 
-            // nomeProdottoDataGridViewTextBoxColumn
-            // 
-            this.nomeProdottoDataGridViewTextBoxColumn.DataPropertyName = "NomeProdotto";
-            this.nomeProdottoDataGridViewTextBoxColumn.HeaderText = "NomeProdotto";
-            this.nomeProdottoDataGridViewTextBoxColumn.Name = "nomeProdottoDataGridViewTextBoxColumn";
-            this.nomeProdottoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // prezzoProdottoDataGridViewTextBoxColumn
-            // 
-            this.prezzoProdottoDataGridViewTextBoxColumn.DataPropertyName = "PrezzoProdotto";
-            this.prezzoProdottoDataGridViewTextBoxColumn.HeaderText = "PrezzoProdotto";
-            this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
-            this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -184,8 +193,8 @@
             this.Text = "Menu";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -203,5 +212,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeProdottoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn prezzoProdottoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewImageColumn ImmagineProdotto;
     }
 }

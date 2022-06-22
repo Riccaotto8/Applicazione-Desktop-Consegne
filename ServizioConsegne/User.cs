@@ -13,29 +13,10 @@ namespace ServizioConsegne
 {
     public partial class User : Form
     {
-        private string connString = @"Data Source=PCCHIARA\SQLEXPRESS;Initial Catalog= Pizzeria;User ID=sa;Password=cs";
+        //private string connString = @"Data Source=PCCHIARA\SQLEXPRESS;Initial Catalog= Pizzeria;User ID=sa;Password=cs";
         public User()
         {
             InitializeComponent();
-            using (var connection = new SqlConnection(connString))
-            {
-                connection.Open();
-                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Menu", connection);
-                var dataTable = new DataTable();
-                sqlAdapter.Fill(dataTable);
-
-                var prodotti = new List<Prodotto>();
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    var Prodotto = new Prodotto
-                    {
-                        NomeProdotto = (string)row["NomeProdotto"],
-                        PrezzoProdotto = Convert.ToDecimal(row["Prezzo"])
-                    };
-                    prodotti.Add(Prodotto);
-                }
-                prodottoBindingSource.DataSource = prodotti;
-            }
         }
 
         private void Home_Click(object sender, EventArgs e)

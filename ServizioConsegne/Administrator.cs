@@ -62,29 +62,32 @@ namespace ServizioConsegne
 
         private void Update_Click(object sender, EventArgs e)
         {
-            DataGridViewRow newDataRow = dataGridView1.Rows[indexRow];
-
-            newDataRow.Cells[0].Value = textBox1.Text;
-            newDataRow.Cells[1].Value = textBox2.Text;
-            newDataRow.Cells[2].Value = pictureBox1.Image;
-
-            var prodotto = (Prodotto)prodottoBindingSource1.Current;
-
-            using (var connection = new SqlConnection(connString))
+            if(indexRow > 0)
             {
-                var update = new SqlCommand("UPDATE Menu SET NomeProdotto = @nome, PrezzoProdotto = @prezzo, ImmagineProdotto = @img WHERE IDRow = @id", connection);
-                update.Parameters.AddWithValue("nome", textBox1.Text);
-                update.Parameters.AddWithValue("prezzo", Convert.ToDecimal(textBox2.Text));
-                update.Parameters.AddWithValue("id", prodotto.Chiave);
-                var memoryStream = new MemoryStream();
-                pictureBox1.Image.Save(memoryStream, pictureBox1.Image.RawFormat);
-                update.Parameters.AddWithValue("img", memoryStream.ToArray());
+                DataGridViewRow newDataRow = dataGridView1.Rows[indexRow];
 
-                connection.Open();
+                newDataRow.Cells[0].Value = textBox1.Text;
+                newDataRow.Cells[1].Value = textBox2.Text;
+                newDataRow.Cells[2].Value = pictureBox1.Image;
 
-                update.ExecuteNonQuery();
+                var prodotto = (Prodotto)prodottoBindingSource1.Current;
 
-                prodottoBindingSource1.EndEdit();
+                using (var connection = new SqlConnection(connString))
+                {
+                    var update = new SqlCommand("UPDATE Menu SET NomeProdotto = @nome, PrezzoProdotto = @prezzo, ImmagineProdotto = @img WHERE IDRow = @id", connection);
+                    update.Parameters.AddWithValue("nome", textBox1.Text);
+                    update.Parameters.AddWithValue("prezzo", Convert.ToDecimal(textBox2.Text));
+                    update.Parameters.AddWithValue("id", prodotto.Chiave);
+                    var memoryStream = new MemoryStream();
+                    pictureBox1.Image.Save(memoryStream, pictureBox1.Image.RawFormat);
+                    update.Parameters.AddWithValue("img", memoryStream.ToArray());
+
+                    connection.Open();
+
+                    update.ExecuteNonQuery();
+
+                    prodottoBindingSource1.EndEdit();
+                }
             }
         }
 
@@ -114,8 +117,6 @@ namespace ServizioConsegne
                 prodottoBindingSource1.Add(prodotto);
 
                 add.ExecuteNonQuery();
-
-
             }
         }
 
@@ -148,11 +149,6 @@ namespace ServizioConsegne
             {
                 pictureBox1.Image = Image.FromFile(openFileDialog.FileName);
             }
-        }
-
-        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

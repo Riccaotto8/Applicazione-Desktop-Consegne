@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,10 +28,13 @@ namespace ServizioConsegne
                 var prodotti = new List<Prodotto>();
                 foreach (DataRow row in dataTable.Rows)
                 {
+                    Stream array = new MemoryStream((byte[])row["ImmagineProdotto"]);
                     var Prodotto = new Prodotto
                     {
+                        Chiave = Convert.ToInt32(row["IDRow"]),
                         NomeProdotto = (string)row["NomeProdotto"],
-                        PrezzoProdotto = Convert.ToDecimal(row["Prezzo"])
+                        PrezzoProdotto = Convert.ToDecimal(row["PrezzoProdotto"]),
+                        ImmagineProdotto = new Bitmap(array)
                     };
                     prodotti.Add(Prodotto);
                 }
@@ -66,8 +70,18 @@ namespace ServizioConsegne
         {
             var prodotto = (Prodotto)prodottoBindingSource.Current;
 
-            var carrello = new List<Prodotto>();
-            carrello.Add(prodotto);
+            using (var connection = new SqlConnection(connString))
+            {
+                var add = new SqlCommand("INSERT INTO Carrello(NomeProdotto, PrezzoProdotto, ImmagineProdotto) VALUES (@nome, @prezzo, @img)", connection);
+                add.Parameters.AddWithValue("nome", prodotto.NomeProdotto);
+                add.Parameters.AddWithValue("prezzo", prodotto.PrezzoProdotto);
+                ImageConverter converter = new ImageConverter();
+                add.Parameters.AddWithValue("img", (byte[])converter.ConvertTo(prodotto.ImmagineProdotto, typeof(byte[])));
+
+                connection.Open();
+
+                add.ExecuteNonQuery();
+            }
         }
     }
 }
