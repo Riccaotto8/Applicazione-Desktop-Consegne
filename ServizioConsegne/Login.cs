@@ -21,23 +21,8 @@ namespace ServizioConsegne
 
         private void Login_Click(object sender, EventArgs e)
         {
-            String timeStamp = GetTimestamp(DateTime.Now);
-
             if ((textBox1.Text == "Admin") && (textBox2.Text == "1234"))
             {
-
-                /*using (var connection = new SqlConnection(connString))
-                {
-                    var crono = new SqlCommand("INSERT INTO RegistroLog (TipoUtente, Orario) VALUES (@user, @time)", connection);
-                    crono.Parameters.AddWithValue("user", "administrator");
-                    crono.Parameters.AddWithValue("time", timeStamp);
-
-
-                    connection.Open();
-
-                    crono.ExecuteNonQuery();
-                }*/
-
                 Hide();
                 var admin = new Administrator();
                 admin.ShowDialog();
@@ -45,28 +30,11 @@ namespace ServizioConsegne
             }
             else
             {
-                /*using (var connection = new SqlConnection(connString))
-                {
-                    var crono = new SqlCommand("INSERT INTO RegistroLog (TipoUtente, Orario) VALUES (@user, @time)", connection);
-                    crono.Parameters.AddWithValue("user", "user");
-                    crono.Parameters.AddWithValue("time", timeStamp);
-
-
-                    connection.Open();
-
-                    crono.ExecuteNonQuery();
-                }*/
-
                 Hide();
                 var user = new User();
                 user.ShowDialog();
                 Close();
             }
-        }
-
-        public static String GetTimestamp(DateTime value)
-        {
-            return value.ToString("yyyyMMddHHmmssffff");
         }
     }
 }
