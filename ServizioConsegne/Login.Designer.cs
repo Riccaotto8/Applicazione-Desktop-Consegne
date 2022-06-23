@@ -1,6 +1,6 @@
 ﻿namespace ServizioConsegne
 {
-    partial class Form1
+    partial class Login
     {
         /// <summary>
         /// Variabile di progettazione necessaria.
@@ -90,7 +90,7 @@
             this.textBox2.Size = new System.Drawing.Size(191, 26);
             this.textBox2.TabIndex = 5;
             // 
-            // Form1
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -102,9 +102,9 @@
             this.Controls.Add(this.login);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "Form1";
+            this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 

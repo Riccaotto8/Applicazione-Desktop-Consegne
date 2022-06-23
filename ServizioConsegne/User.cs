@@ -51,7 +51,7 @@ namespace ServizioConsegne
         private void Log_Click(object sender, EventArgs e)
         {
             Hide();
-            var login = new Form1();
+            var login = new Login();
             login.ShowDialog();
             Close();
         }

@@ -11,10 +11,9 @@ using System.Data.SqlClient;
 
 namespace ServizioConsegne
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
-        private string connString = @"Data Source=PCCHIARA\SQLEXPRESS;Initial Catalog= Pizzeria;User ID=sa;Password=cs";
-        public Form1()
+        public Login()
         {
             InitializeComponent();
         }
@@ -31,8 +30,8 @@ namespace ServizioConsegne
             else
             {
                 Hide();
-                var user = new User();
-                user.ShowDialog();
+                var home = new User();
+                home.ShowDialog();
                 Close();
             }
         }

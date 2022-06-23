@@ -36,19 +36,21 @@
             this.home = new System.Windows.Forms.Button();
             this.Login = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.carrelloBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ImmagineProdotto = new System.Windows.Forms.DataGridViewImageColumn();
             this.QuantitaOrdinata = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Elimina = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carrelloBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -142,6 +144,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.textBox3);
+            this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.textBox2);
@@ -153,10 +157,21 @@
             this.panel2.Size = new System.Drawing.Size(849, 129);
             this.panel2.TabIndex = 1;
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(626, 72);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(154, 31);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Conferma ordine";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.AddOrder_Click);
+            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(503, 68);
+            this.button1.Location = new System.Drawing.Point(395, 72);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(142, 31);
             this.button1.TabIndex = 4;
@@ -168,7 +183,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(357, 27);
+            this.label2.Location = new System.Drawing.Point(246, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 17);
             this.label2.TabIndex = 3;
@@ -177,7 +192,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(357, 72);
+            this.textBox2.Location = new System.Drawing.Point(249, 76);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 23);
             this.textBox2.TabIndex = 2;
@@ -186,7 +201,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(148, 27);
+            this.label1.Location = new System.Drawing.Point(54, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 17);
             this.label1.TabIndex = 1;
@@ -195,7 +210,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(151, 72);
+            this.textBox1.Location = new System.Drawing.Point(57, 76);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 23);
             this.textBox1.TabIndex = 0;
@@ -219,29 +234,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(849, 439);
             this.dataGridView1.TabIndex = 2;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellClick);
-            // 
-            // carrelloBindingSource
-            // 
-            this.carrelloBindingSource.DataSource = typeof(ServizioConsegne.Carrello);
-            // 
-            // prodottoBindingSource
-            // 
-            this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
-            // 
-            // nomeProdottoDataGridViewTextBoxColumn
-            // 
-            this.nomeProdottoDataGridViewTextBoxColumn.DataPropertyName = "NomeProdotto";
-            this.nomeProdottoDataGridViewTextBoxColumn.HeaderText = "NomeProdotto";
-            this.nomeProdottoDataGridViewTextBoxColumn.Name = "nomeProdottoDataGridViewTextBoxColumn";
-            this.nomeProdottoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // prezzoProdottoDataGridViewTextBoxColumn
-            // 
-            this.prezzoProdottoDataGridViewTextBoxColumn.DataPropertyName = "PrezzoProdotto";
-            this.prezzoProdottoDataGridViewTextBoxColumn.HeaderText = "PrezzoProdotto";
-            this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
-            this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellCounterClick);
             // 
             // ImmagineProdotto
             // 
@@ -263,6 +256,36 @@
             this.Elimina.HeaderText = "Elimina";
             this.Elimina.Name = "Elimina";
             this.Elimina.ReadOnly = true;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(626, 27);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(154, 23);
+            this.textBox3.TabIndex = 6;
+            // 
+            // nomeProdottoDataGridViewTextBoxColumn
+            // 
+            this.nomeProdottoDataGridViewTextBoxColumn.DataPropertyName = "NomeProdotto";
+            this.nomeProdottoDataGridViewTextBoxColumn.HeaderText = "NomeProdotto";
+            this.nomeProdottoDataGridViewTextBoxColumn.Name = "nomeProdottoDataGridViewTextBoxColumn";
+            this.nomeProdottoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // prezzoProdottoDataGridViewTextBoxColumn
+            // 
+            this.prezzoProdottoDataGridViewTextBoxColumn.DataPropertyName = "PrezzoProdotto";
+            this.prezzoProdottoDataGridViewTextBoxColumn.HeaderText = "PrezzoProdotto";
+            this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
+            this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // carrelloBindingSource
+            // 
+            this.carrelloBindingSource.DataSource = typeof(ServizioConsegne.Carrello);
+            // 
+            // prodottoBindingSource
+            // 
+            this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
             // 
             // Cart
             // 
@@ -296,7 +319,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource prodottoBindingSource;
         private System.Windows.Forms.BindingSource carrelloBindingSource;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
@@ -306,5 +328,8 @@
         private System.Windows.Forms.DataGridViewImageColumn ImmagineProdotto;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuantitaOrdinata;
         private System.Windows.Forms.DataGridViewButtonColumn Elimina;
+        private System.Windows.Forms.BindingSource prodottoBindingSource;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }

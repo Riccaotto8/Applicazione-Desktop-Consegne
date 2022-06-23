@@ -10,14 +10,88 @@ namespace ServizioConsegne
 {
     public partial class Menu : Form
     {
-        private string connString = @"Data Source=PCCHIARA\SQLEXPRESS;Initial Catalog= Pizzeria;User ID=sa;Password=cs";
+        //Query di connessione 
+        private readonly string connString = @"Data Source=PCCHIARA\SQLEXPRESS;Initial Catalog= Pizzeria;User ID=sa;Password=cs";
+        //Query tabella
+        private readonly string tableString = @"SELECT * FROM Menu";
+        //Query aggiornamento dei dati
+        private readonly string updateString = @"UPDATE Carrello SET QuantitaOrdinata += @quantit WHERE IDRow = @id";
+        //Query aggiunzione dei dati
+        private readonly string addString = @"INSERT INTO Carrello(IDRow, QuantitaOrdinata) VALUES (@idR, @quantit)";
+
         public Menu()
         {
             InitializeComponent();
+            DataGridView_View();
+        }
+
+        //Bottone per la home
+        private void Home_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var home = new User();
+            home.ShowDialog();
+            Close();
+        }
+
+        //Bottone per il carrello
+        private void Cart_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var cart = new Cart();
+            cart.ShowDialog();
+            Close();
+        }
+
+        //Bottone per l'assistenza
+        private void Assistance_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var assistance = new Assistance();
+            assistance.ShowDialog();
+            Close();
+        }
+
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            var prodotto = (Prodotto)prodottoBindingSource.Current;
+
+            if (textBox1.Text.Length == 0)
+            {
+                textBox1.Text = "1";
+            }
+
+            using (var connection = new SqlConnection(connString))
+            {
+                if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+                {
+
+                    var update = new SqlCommand(updateString, connection);
+                    update.Parameters.AddWithValue("id", prodotto.Chiave);
+                    update.Parameters.AddWithValue("quantit", Convert.ToInt16(textBox1.Text));
+
+                    var add = new SqlCommand(addString, connection);
+                    add.Parameters.AddWithValue("idR", prodotto.Chiave);
+                    add.Parameters.AddWithValue("quantit", Convert.ToInt16(textBox1.Text));
+
+                    connection.Open();
+
+                    if (update.ExecuteNonQuery() == 0)
+                    {
+                        add.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        private void DataGridView_View()
+        {
             using (var connection = new SqlConnection(connString))
             {
                 connection.Open();
-                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Menu", connection);
+                var sqlAdapter = new SqlDataAdapter(tableString, connection);
                 var dataTable = new DataTable();
                 sqlAdapter.Fill(dataTable);
 
@@ -35,59 +109,6 @@ namespace ServizioConsegne
                     prodotti.Add(Prodotto);
                 }
                 prodottoBindingSource.DataSource = prodotti;
-            }
-        }
-
-        private void Home_Click(object sender, EventArgs e)
-        {
-            Hide();
-            var home = new User();
-            home.ShowDialog();
-            Close();
-        }
-
-        private void Cart_Click(object sender, EventArgs e)
-        {
-            Hide();
-            var cart = new Cart();
-            cart.ShowDialog();
-            Close();
-        }
-
-        private void Assistance_Click(object sender, EventArgs e)
-        {
-            Hide();
-            var assistance = new Assistance();
-            assistance.ShowDialog();
-            Close();
-        }
-
-        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var senderGrid = (DataGridView)sender;
-
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0)
-            {
-                var prodotto = (Prodotto)prodottoBindingSource.Current;
-
-                using (var connection = new SqlConnection(connString))
-                {
-                    var update = new SqlCommand("UPDATE Carrello SET QuantitaOrdinata += @quantit WHERE IDRow = @id", connection);
-                    update.Parameters.AddWithValue("id", prodotto.Chiave);
-                    update.Parameters.AddWithValue("quantit", Convert.ToInt16(textBox1.Text));
-
-                    var add = new SqlCommand("INSERT INTO Carrello(IDRow, QuantitaOrdinata) VALUES (@id, @quantit)", connection);
-                    add.Parameters.AddWithValue("id", prodotto.Chiave);
-                    add.Parameters.AddWithValue("quantit", Convert.ToInt16(textBox1.Text));
-
-                    connection.Open();
-
-                    if(update.ExecuteNonQuery() == 0)
-                    {
-                        add.ExecuteNonQuery();
-                    }
-                }
             }
         }
     }

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.navbarUser = new System.Windows.Forms.Panel();
-            this.Login = new System.Windows.Forms.Button();
+            this.login = new System.Windows.Forms.Button();
             this.assistenza = new System.Windows.Forms.Button();
             this.carrello = new System.Windows.Forms.Button();
             this.menu = new System.Windows.Forms.Button();
@@ -43,7 +43,7 @@
             // navbarUser
             // 
             this.navbarUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.navbarUser.Controls.Add(this.Login);
+            this.navbarUser.Controls.Add(this.login);
             this.navbarUser.Controls.Add(this.assistenza);
             this.navbarUser.Controls.Add(this.carrello);
             this.navbarUser.Controls.Add(this.menu);
@@ -54,15 +54,15 @@
             this.navbarUser.Size = new System.Drawing.Size(163, 568);
             this.navbarUser.TabIndex = 0;
             // 
-            // Login
+            // login
             // 
-            this.Login.Location = new System.Drawing.Point(44, 12);
-            this.Login.Name = "Login";
-            this.Login.Size = new System.Drawing.Size(75, 23);
-            this.Login.TabIndex = 0;
-            this.Login.Text = "Login";
-            this.Login.UseVisualStyleBackColor = true;
-            this.Login.Click += new System.EventHandler(this.Log_Click);
+            this.login.Location = new System.Drawing.Point(44, 12);
+            this.login.Name = "login";
+            this.login.Size = new System.Drawing.Size(75, 23);
+            this.login.TabIndex = 0;
+            this.login.Text = "Login";
+            this.login.UseVisualStyleBackColor = true;
+            this.login.Click += new System.EventHandler(this.Log_Click);
             // 
             // assistenza
             // 
@@ -128,14 +128,14 @@
             // 
             this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
             // 
-            // User
+            // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 568);
             this.Controls.Add(this.navbarUser);
-            this.Name = "User";
-            this.Text = "Form2";
+            this.Name = "Home";
+            this.Text = "Home";
             this.navbarUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -150,6 +150,6 @@
         private System.Windows.Forms.Button carrello;
         private System.Windows.Forms.Button menu;
         private System.Windows.Forms.BindingSource prodottoBindingSource;
-        private System.Windows.Forms.Button Login;
+        private System.Windows.Forms.Button login;
     }
 }
