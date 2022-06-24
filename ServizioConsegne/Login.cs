@@ -27,12 +27,17 @@ namespace ServizioConsegne
                 admin.ShowDialog();
                 Close();
             }
-            else
+            else if(((textBox1.Text != "") && (textBox2.Text != "")) && ((textBox1.Text != "Immetti nome") && (textBox2.Text != "Immetti password")))
             {
                 Hide();
                 var home = new User();
                 home.ShowDialog();
                 Close();
+            }
+            else
+            {
+                textBox1.Text = "Immetti nome";
+                textBox2.Text = "Immetti password";
             }
         }
     }
