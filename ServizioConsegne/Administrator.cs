@@ -10,34 +10,14 @@ namespace ServizioConsegne
 {
     public partial class Administrator : Form
     {
+        //Query di connessione
+        private readonly string connString = @"Data Source = PCCHIARA\SQLEXPRESS;Initial Catalog = Pizzeria; User ID = sa; Password=cs";
+
         private int indexRow;
-        private string connString = @"Data Source = PCCHIARA\SQLEXPRESS;Initial Catalog = Pizzeria; User ID = sa; Password=cs";
         public Administrator()
         {
             InitializeComponent();
-            using (var connection = new SqlConnection(connString))
-            {
-                connection.Open();
-                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Menu", connection);
-                var dataTable = new DataTable();
-                sqlAdapter.Fill(dataTable);
-
-                var prodotti = new List<Prodotto>();
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    Stream array = new MemoryStream((byte[])row["ImmagineProdotto"]);
-                    var Prodotto = new Prodotto
-                    {
-                        Chiave = Convert.ToInt32(row["IDRow"]),
-                        NomeProdotto = (string)row["NomeProdotto"],
-                        PrezzoProdotto = Convert.ToDecimal(row["PrezzoProdotto"]),
-                        ImmagineProdotto = new Bitmap(array)
-
-                    };
-                    prodotti.Add(Prodotto);
-                }
-                prodottoBindingSource1.DataSource = prodotti;
-            }
+            DataGridView_View();
         }
 
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -70,7 +50,7 @@ namespace ServizioConsegne
 
                 using (var connection = new SqlConnection(connString))
                 {
-                    var update = new SqlCommand("UPDATE Menu SET NomeProdotto = @nome, PrezzoProdotto = @prezzo, ImmagineProdotto = @img WHERE IDRow = @id", connection);
+                    var update = new SqlCommand("UPDATE Menu SET NomeProdotto = @nome, PrezzoProdotto = @prezzo, ImmagineProdotto = @img WHERE IDMenu = @id", connection);
                     update.Parameters.AddWithValue("nome", textBox1.Text);
                     update.Parameters.AddWithValue("prezzo", Convert.ToDecimal(textBox2.Text));
                     update.Parameters.AddWithValue("id", prodotto.Chiave);
@@ -123,7 +103,7 @@ namespace ServizioConsegne
             using (var connection = new SqlConnection(connString))
             {
 
-                var delete = new SqlCommand("DELETE FROM Menu WHERE IDRow = @id", connection);
+                var delete = new SqlCommand("DELETE FROM Menu WHERE IDMenu = @id", connection);
                 delete.Parameters.AddWithValue("id", prodotto.Chiave);
 
                 connection.Open();
@@ -144,6 +124,33 @@ namespace ServizioConsegne
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 pictureBox1.Image = Image.FromFile(openFileDialog.FileName);
+            }
+        }
+
+        private void DataGridView_View()
+        {
+            using (var connection = new SqlConnection(connString))
+            {
+                connection.Open();
+                var sqlAdapter = new SqlDataAdapter("SELECT * FROM Menu", connection);
+                var dataTable = new DataTable();
+                sqlAdapter.Fill(dataTable);
+
+                var prodotti = new List<Prodotto>();
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    Stream array = new MemoryStream((byte[])row["ImmagineProdotto"]);
+                    var Prodotto = new Prodotto
+                    {
+                        Chiave = Convert.ToInt32(row["IDRow"]),
+                        NomeProdotto = (string)row["NomeProdotto"],
+                        PrezzoProdotto = Convert.ToDecimal(row["PrezzoProdotto"]),
+                        ImmagineProdotto = new Bitmap(array)
+
+                    };
+                    prodotti.Add(Prodotto);
+                }
+                prodottoBindingSource1.DataSource = prodotti;
             }
         }
     }

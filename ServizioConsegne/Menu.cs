@@ -15,9 +15,9 @@ namespace ServizioConsegne
         //Query tabella
         private readonly string tableString = @"SELECT * FROM Menu";
         //Query aggiornamento dei dati
-        private readonly string updateString = @"UPDATE Carrello SET QuantitaOrdinata += @quantit WHERE IDRow = @id";
+        private readonly string updateString = @"UPDATE Carrello SET QuantitaOrdinata += @quantit WHERE IDMenu = @id";
         //Query aggiunzione dei dati
-        private readonly string addString = @"INSERT INTO Carrello(IDRow, QuantitaOrdinata) VALUES (@idR, @quantit)";
+        private readonly string addString = @"INSERT INTO Carrello(IDMenu, QuantitaOrdinata) VALUES (@idR, @quantit)";
 
         public Menu()
         {
@@ -101,7 +101,7 @@ namespace ServizioConsegne
                     Stream array = new MemoryStream((byte[])row["ImmagineProdotto"]);
                     var Prodotto = new Prodotto
                     {
-                        Chiave = Convert.ToInt32(row["IDRow"]),
+                        Chiave = Convert.ToInt32(row["IDMenu"]),
                         NomeProdotto = (string)row["NomeProdotto"],
                         PrezzoProdotto = Convert.ToDecimal(row["PrezzoProdotto"]),
                         ImmagineProdotto = new Bitmap(array)

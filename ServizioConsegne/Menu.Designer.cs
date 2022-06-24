@@ -29,24 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.assistenza = new System.Windows.Forms.Button();
             this.carrello = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.home = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ImmagineProdotto = new System.Windows.Forms.DataGridViewImageColumn();
             this.Aggiungi = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -100,7 +101,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(0, 176);
-            this.button1.Name = "menu";
+            this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(163, 48);
             this.button1.TabIndex = 2;
             this.button1.Text = "Menu";
@@ -141,6 +142,10 @@
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
             // 
+            // prodottoBindingSource
+            // 
+            this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.textBox1);
@@ -169,10 +174,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Quantità";
             // 
-            // prodottoBindingSource
-            // 
-            this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
-            // 
             // nomeProdottoDataGridViewTextBoxColumn
             // 
             this.nomeProdottoDataGridViewTextBoxColumn.DataPropertyName = "NomeProdotto";
@@ -183,6 +184,8 @@
             // prezzoProdottoDataGridViewTextBoxColumn
             // 
             this.prezzoProdottoDataGridViewTextBoxColumn.DataPropertyName = "PrezzoProdotto";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.prezzoProdottoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.prezzoProdottoDataGridViewTextBoxColumn.HeaderText = "PrezzoProdotto";
             this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
             this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
@@ -213,9 +216,9 @@
             this.Text = "Menu";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

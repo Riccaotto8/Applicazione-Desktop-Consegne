@@ -71,6 +71,7 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ordine.cs" />
     <Compile Include="Prodotto.cs" />
     <Compile Include="SqlExeption.cs" />
     <Compile Include="User.cs">

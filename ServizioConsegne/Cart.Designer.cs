@@ -29,33 +29,32 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.assistenza = new System.Windows.Forms.Button();
             this.carrello = new System.Windows.Forms.Button();
             this.menu = new System.Windows.Forms.Button();
             this.home = new System.Windows.Forms.Button();
             this.Login = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ImmagineProdotto = new System.Windows.Forms.DataGridViewImageColumn();
             this.QuantitaOrdinata = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Elimina = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.carrelloBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.carrelloBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -142,79 +141,6 @@
             this.Login.UseVisualStyleBackColor = true;
             this.Login.Click += new System.EventHandler(this.Log_Click);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(157, 439);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(849, 129);
-            this.panel2.TabIndex = 1;
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(626, 72);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(154, 31);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Conferma ordine";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.AddOrder_Click);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(395, 72);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(142, 31);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Resetta quantità";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.ResetQuantity_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(246, 27);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Quantità";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(249, 76);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 23);
-            this.textBox2.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(54, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Importo Totale";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(57, 76);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 0;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -231,10 +157,10 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(157, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(849, 439);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellCounterClick);
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellBeginEdit);
             // 
             // ImmagineProdotto
             // 
@@ -247,23 +173,16 @@
             // QuantitaOrdinata
             // 
             this.QuantitaOrdinata.DataPropertyName = "QuantitaOrdinata";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.QuantitaOrdinata.DefaultCellStyle = dataGridViewCellStyle2;
             this.QuantitaOrdinata.HeaderText = "QuantitaOrdinata";
             this.QuantitaOrdinata.Name = "QuantitaOrdinata";
-            this.QuantitaOrdinata.ReadOnly = true;
             // 
             // Elimina
             // 
             this.Elimina.HeaderText = "Elimina";
             this.Elimina.Name = "Elimina";
             this.Elimina.ReadOnly = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(626, 27);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(154, 23);
-            this.textBox3.TabIndex = 6;
             // 
             // nomeProdottoDataGridViewTextBoxColumn
             // 
@@ -275,6 +194,8 @@
             // prezzoProdottoDataGridViewTextBoxColumn
             // 
             this.prezzoProdottoDataGridViewTextBoxColumn.DataPropertyName = "PrezzoProdotto";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.prezzoProdottoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.prezzoProdottoDataGridViewTextBoxColumn.HeaderText = "PrezzoProdotto";
             this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
             this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
@@ -287,6 +208,55 @@
             // 
             this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(57, 76);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(54, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Importo Totale";
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(626, 72);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(154, 31);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Conferma ordine";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.AddOrder_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(626, 27);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(154, 23);
+            this.textBox3.TabIndex = 6;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.textBox3);
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(157, 439);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(849, 129);
+            this.panel2.TabIndex = 1;
+            // 
             // Cart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,11 +268,11 @@
             this.Name = "Cart";
             this.Text = "Cart";
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.carrelloBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -315,21 +285,18 @@
         private System.Windows.Forms.Button menu;
         private System.Windows.Forms.Button carrello;
         private System.Windows.Forms.Button assistenza;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource carrelloBindingSource;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.BindingSource prodottoBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeProdottoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn prezzoProdottoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewImageColumn ImmagineProdotto;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuantitaOrdinata;
         private System.Windows.Forms.DataGridViewButtonColumn Elimina;
-        private System.Windows.Forms.BindingSource prodottoBindingSource;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Panel panel2;
     }
 }

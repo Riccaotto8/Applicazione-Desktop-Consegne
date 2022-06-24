@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 
 namespace ServizioConsegne
 {
-    public partial class Login : Form
+    public partial class  Login : Form
     {
         public Login()
         {

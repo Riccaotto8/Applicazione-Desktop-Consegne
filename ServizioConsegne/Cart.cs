@@ -13,11 +13,19 @@ namespace ServizioConsegne
         //Query di connessione
         private readonly string connString = @"Data Source = PCCHIARA\SQLEXPRESS;Initial Catalog = Pizzeria; User ID = sa; Password = cs";
         //Query tabella
-        private readonly string tableString = @"SELECT * FROM Menu INNER JOIN Carrello ON Menu.IDRow = Carrello.IDRow";
+        private readonly string tableString = @"SELECT * FROM Menu INNER JOIN Carrello ON Menu.IDMenu = Carrello.IDMenu";
+        //Query tabella ordine
+        private readonly string tableOrdineString = @"SELECT * FROM Ordine";
+        //Query tabella ordine
+        private readonly string tableMenuString = @"SELECT * FROM Menu";
         //Query di aggiornamento dei dati
-        private readonly string updateString = @"UPDATE Carrello SET QuantitaOrdinata = @quantit WHERE IDRow = @id";
+        private readonly string updateString = @"UPDATE Carrello SET QuantitaOrdinata = @quantit WHERE IDMenu = @id";
         //Query di eliminazione della riga
-        private readonly string deleteString = @"DELETE FROM Carrello WHERE IDRow = @id";
+        private readonly string deleteString = @"DELETE FROM Carrello WHERE IDMenu = @id";
+        //Query di creazione ordine
+        private readonly string addString = @"INSERT INTO Ordine(Destinazione, ImportoTotale) VALUES (@dest, @imp)";
+        //Query di creazione ordine
+        private readonly string passString = @"INSERT INTO ProdottosuOrdine(IDOrdine, IDMenu, QuantitaOrdinata) VALUES (@id1, @id2, @quant)";
 
         //Variabili universali
         decimal tot = 0;
@@ -76,34 +84,7 @@ namespace ServizioConsegne
         //Aggiornamento della quantità
         private void ResetQuantity_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text.Length > 0)
-            {
-                if (indexRow >= 0)
-                {
-                    DataGridViewRow newDataRow = dataGridView1.Rows[indexRow];
 
-                    newDataRow.Cells[3].Value = textBox2.Text;
-
-                    var carrello = (Carrello)carrelloBindingSource.Current;
-
-                    using (var connection = new SqlConnection(connString))
-                    {
-                        var update = new SqlCommand(updateString, connection);
-                        update.Parameters.AddWithValue("quantit", Convert.ToInt16(textBox2.Text));
-                        update.Parameters.AddWithValue("id", carrello.Chiave);
-
-                        connection.Open();
-
-                        update.ExecuteNonQuery();
-
-                        carrelloBindingSource.ResetCurrentItem();
-                    }
-                }
-            }
-            else
-            {
-                textBox2.Text = "1";
-            }
         }
 
         private void DataGridView1_CellCounterClick(object sender, DataGridViewCellEventArgs e)
@@ -114,11 +95,9 @@ namespace ServizioConsegne
 
             var carrello = (Carrello)carrelloBindingSource.Current;
 
-            textBox2.Text = carrello.QuantitaOrdinata.ToString();
-
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && indexRow >= 0)
             {
-                
+
                 using (var connection = new SqlConnection(connString))
                 {
 
@@ -147,6 +126,43 @@ namespace ServizioConsegne
 
             using (var connection = new SqlConnection(connString))
             {
+                var create = new SqlCommand(addString, connection);
+                create.Parameters.AddWithValue("dest", "dhorhjdòkhn");
+                create.Parameters.AddWithValue("imp", tot);
+
+                connection.Open();
+
+                create.ExecuteNonQuery();
+
+                var sqlAdapter = new SqlDataAdapter(tableOrdineString, connection);
+                var dataTable = new DataTable();
+                sqlAdapter.Fill(dataTable);
+
+                int ultimaRiga = dataTable.Rows.Count;
+                int i = 0;
+                var Ordine = new Ordine();
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    if (i == ultimaRiga - 1)
+                        Ordine.IDOrdine = Convert.ToInt16(row["IDOrdine"]);
+                    i++;
+                }
+
+                sqlAdapter = new SqlDataAdapter(tableString, connection);
+                dataTable = new DataTable();
+                sqlAdapter.Fill(dataTable);
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    var pass = new SqlCommand(passString, connection);
+                    pass.Parameters.AddWithValue("id1", Ordine.IDOrdine);
+                    pass.Parameters.AddWithValue("id2", row["IDMenu"]);
+                    pass.Parameters.AddWithValue("quant", row["QuantitaOrdinata"]);
+                    pass.ExecuteNonQuery();
+                }
+            }
+            /*
+            using (var connection = new SqlConnection(connString))
+            {
                 var command = new SqlCommand(tableString, connection);
                 connection.Open();
                 var sqlAdapter = new SqlDataAdapter(tableString, connection);
@@ -155,17 +171,32 @@ namespace ServizioConsegne
 
                 using (StreamWriter sw = File.CreateText(pathOrder))
                 {
+                    var scontrino = new List<Carrello>();
                     foreach (DataRow row in dataTable.Rows)
                     {
-                        sw.Write("Pizza: " + row["NomeProdotto"] + " Prezzo: " + row["PrezzoProdotto"] + " €" + " Quantità: " + row["QuantitaOrdinata"] + "\n");
+                        var Carrello = new Carrello
+                        {
+                            NomeProdotto = (string)row["NomeProdotto"],
+                            PrezzoProdotto = Convert.ToDecimal(row["PrezzoProdotto"]),
+                            QuantitaOrdinata = Convert.ToInt16(row["QuantitaOrdinata"])
+                        };
+                        scontrino.Add(Carrello);
                     }
 
-                    sw.Write("Importo totale: " + tot.ToString() + " €");
+                    foreach (Carrello c in scontrino)
+                    {
+                        var somma = 0;
+                        var sommaCarrello = c.NomeProdotto.Length + c.PrezzoProdotto.ToString().Length + c.QuantitaOrdinata.ToString().Length;
+                        if (sommaCarrello > somma)
+                        {
+                            somma = sommaCarrello;
+                        }
+                    }
                 }
-            }
+            }*/
         }
 
-        //Visualizzazione elementi della datagridview
+        //Visualizzazione datagridview
         private void DataGridView_View()
         {
             using (var connection = new SqlConnection(connString))
@@ -182,7 +213,7 @@ namespace ServizioConsegne
                     Stream array = new MemoryStream((byte[])row["ImmagineProdotto"]);
                     var Carrello = new Carrello
                     {
-                        Chiave = Convert.ToInt32(row["IDRow"]),
+                        Chiave = Convert.ToInt32(row["IDMenu"]),
                         NomeProdotto = (string)row["NomeProdotto"],
                         PrezzoProdotto = Convert.ToDecimal(row["PrezzoProdotto"]),
                         ImmagineProdotto = new Bitmap(array),
@@ -203,6 +234,24 @@ namespace ServizioConsegne
         public static String GetTimestamp(DateTime value)
         {
             return value.ToString("yyyyMMddHHmmssffff");
+        }
+
+        private void DataGridView1_CellBeginEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var carrello = (Carrello)carrelloBindingSource.Current;
+
+            using (var connection = new SqlConnection(connString))
+            {
+                var update = new SqlCommand(updateString, connection);
+                update.Parameters.AddWithValue("quantit", carrello.QuantitaOrdinata);
+                update.Parameters.AddWithValue("id", carrello.Chiave);
+
+                connection.Open();
+
+                update.ExecuteNonQuery();
+
+                carrelloBindingSource.ResetCurrentItem();
+            }
         }
     }
 }
