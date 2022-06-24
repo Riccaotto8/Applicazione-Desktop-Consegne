@@ -16,8 +16,6 @@ namespace ServizioConsegne
         private readonly string tableString = @"SELECT * FROM Menu INNER JOIN Carrello ON Menu.IDMenu = Carrello.IDMenu";
         //Query tabella ordine
         private readonly string tableOrdineString = @"SELECT * FROM Ordine";
-        //Query tabella ordine
-        private readonly string tableMenuString = @"SELECT * FROM Menu";
         //Query di aggiornamento dei dati
         private readonly string updateString = @"UPDATE Carrello SET QuantitaOrdinata = @quantit WHERE IDMenu = @id";
         //Query di eliminazione della riga
@@ -160,7 +158,7 @@ namespace ServizioConsegne
                     pass.ExecuteNonQuery();
                 }
             }
-            /*
+            
             using (var connection = new SqlConnection(connString))
             {
                 var command = new SqlCommand(tableString, connection);
@@ -183,17 +181,66 @@ namespace ServizioConsegne
                         scontrino.Add(Carrello);
                     }
 
+                    var lunLinea = "|  Nome prodotto  |  Prezzo  |  Quantità ordinata  |".Length;
+                    for (int i = 0; i < lunLinea; i++)
+                    {
+                        sw.Write("-");
+                    }
+                    sw.Write("\n");
+                    sw.WriteLine("|  Nome prodotto  |  Prezzo  |  Quantità ordinata  |");
+                    for (int i = 0; i < lunLinea; i++)
+                    {
+                        sw.Write("-");
+                    }
+                    sw.Write("\n");
+
+                    var lunNome = "Nome prodotto  ".Length;
+                    var lunPrezzo = "  Prezzo  ".Length;
+                    var lunQuant = "  Quantità ordinata  ".Length;
                     foreach (Carrello c in scontrino)
                     {
-                        var somma = 0;
-                        var sommaCarrello = c.NomeProdotto.Length + c.PrezzoProdotto.ToString().Length + c.QuantitaOrdinata.ToString().Length;
-                        if (sommaCarrello > somma)
+                        sw.Write("|  " + c.NomeProdotto);
+                        var difNome = lunNome - c.NomeProdotto.Length;
+                        for (int i = 0; i < difNome; i++)
                         {
-                            somma = sommaCarrello;
+                            sw.Write(" ");
                         }
+                        sw.Write("|");
+                        var difPrezzo = lunPrezzo - (c.PrezzoProdotto.ToString().Length + "€".Length);
+                        for (int i = 0; i < difPrezzo; i++)
+                        {
+                            sw.Write(" ");
+                        }
+                        sw.Write(c.PrezzoProdotto + "€");
+                        sw.Write("|");
+                        var difQuant = lunQuant - c.QuantitaOrdinata.ToString().Length;
+                        for (int i = 0; i < difQuant; i++)
+                        {
+                            sw.Write(" ");
+                        }
+                        sw.Write(c.QuantitaOrdinata);
+                        sw.Write("|");
+                        sw.Write("\n");
+                        for (int i = 0; i < lunLinea; i++)
+                        {
+                            sw.Write("-");
+                        }
+                        sw.Write("\n");
+                    }
+                    var lunImp = "|  Importo Totale: ".Length;
+                    sw.Write("|  Importo Totale: ");
+                    var difImp = lunLinea - lunImp - tot.ToString().Length - "€|".Length;
+                    for (int i = 0; i < difImp; i++)
+                    {
+                        sw.Write(" ");
+                    }
+                    sw.Write(tot.ToString() + "€|\n");
+                    for (int i = 0; i < lunLinea; i++)
+                    {
+                        sw.Write("-");
                     }
                 }
-            }*/
+            }
         }
 
         //Visualizzazione datagridview
@@ -251,6 +298,8 @@ namespace ServizioConsegne
                 update.ExecuteNonQuery();
 
                 carrelloBindingSource.ResetCurrentItem();
+
+                tot = Convert.ToDecimal(textBox1.Text);
             }
         }
     }

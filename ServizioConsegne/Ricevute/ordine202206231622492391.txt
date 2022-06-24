@@ -1,5 +1,0 @@
-Pizza: shgvndjv Prezzo: 10,00€ Quantità: 2
-Pizza: rhehhr Prezzo: 5,00€ Quantità: 5
-Pizza: ggmkjg Prezzo: 7,00€ Quantità: 1
-Pizza: sgesgs Prezzo: 5,00€ Quantità: 16
-Importo totale: 132,00€

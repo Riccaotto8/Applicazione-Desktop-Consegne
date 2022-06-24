@@ -41,20 +41,20 @@
             this.ImmagineProdotto = new System.Windows.Forms.DataGridViewImageColumn();
             this.QuantitaOrdinata = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Elimina = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.carrelloBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carrelloBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.prodottoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carrelloBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).BeginInit();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -110,7 +110,7 @@
             this.menu.ForeColor = System.Drawing.Color.White;
             this.menu.Location = new System.Drawing.Point(0, 207);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(163, 48);
+            this.menu.Size = new System.Drawing.Size(163, 53);
             this.menu.TabIndex = 2;
             this.menu.Text = "Menu";
             this.menu.UseVisualStyleBackColor = true;
@@ -184,30 +184,6 @@
             this.Elimina.Name = "Elimina";
             this.Elimina.ReadOnly = true;
             // 
-            // nomeProdottoDataGridViewTextBoxColumn
-            // 
-            this.nomeProdottoDataGridViewTextBoxColumn.DataPropertyName = "NomeProdotto";
-            this.nomeProdottoDataGridViewTextBoxColumn.HeaderText = "NomeProdotto";
-            this.nomeProdottoDataGridViewTextBoxColumn.Name = "nomeProdottoDataGridViewTextBoxColumn";
-            this.nomeProdottoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // prezzoProdottoDataGridViewTextBoxColumn
-            // 
-            this.prezzoProdottoDataGridViewTextBoxColumn.DataPropertyName = "PrezzoProdotto";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.prezzoProdottoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.prezzoProdottoDataGridViewTextBoxColumn.HeaderText = "PrezzoProdotto";
-            this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
-            this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // carrelloBindingSource
-            // 
-            this.carrelloBindingSource.DataSource = typeof(ServizioConsegne.Carrello);
-            // 
-            // prodottoBindingSource
-            // 
-            this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
-            // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -257,6 +233,30 @@
             this.panel2.Size = new System.Drawing.Size(849, 129);
             this.panel2.TabIndex = 1;
             // 
+            // nomeProdottoDataGridViewTextBoxColumn
+            // 
+            this.nomeProdottoDataGridViewTextBoxColumn.DataPropertyName = "NomeProdotto";
+            this.nomeProdottoDataGridViewTextBoxColumn.HeaderText = "NomeProdotto";
+            this.nomeProdottoDataGridViewTextBoxColumn.Name = "nomeProdottoDataGridViewTextBoxColumn";
+            this.nomeProdottoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // prezzoProdottoDataGridViewTextBoxColumn
+            // 
+            this.prezzoProdottoDataGridViewTextBoxColumn.DataPropertyName = "PrezzoProdotto";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.prezzoProdottoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.prezzoProdottoDataGridViewTextBoxColumn.HeaderText = "PrezzoProdotto";
+            this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
+            this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // carrelloBindingSource
+            // 
+            this.carrelloBindingSource.DataSource = typeof(ServizioConsegne.Carrello);
+            // 
+            // prodottoBindingSource
+            // 
+            this.prodottoBindingSource.DataSource = typeof(ServizioConsegne.Prodotto);
+            // 
             // Cart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,10 +269,10 @@
             this.Text = "Cart";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.carrelloBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.carrelloBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
