@@ -31,10 +31,8 @@ namespace ServizioConsegne
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ImmagineProdotto = new System.Windows.Forms.DataGridViewImageColumn();
             this.prodottoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button1 = new System.Windows.Forms.Button();
@@ -47,6 +45,9 @@ namespace ServizioConsegne
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.nomeProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prezzoProdottoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImmagineProdotto = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prodottoBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -74,28 +75,6 @@ namespace ServizioConsegne
             this.dataGridView1.Size = new System.Drawing.Size(530, 450);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellClick);
-            // 
-            // nomeProdottoDataGridViewTextBoxColumn
-            // 
-            this.nomeProdottoDataGridViewTextBoxColumn.DataPropertyName = "NomeProdotto";
-            this.nomeProdottoDataGridViewTextBoxColumn.HeaderText = "NomeProdotto";
-            this.nomeProdottoDataGridViewTextBoxColumn.Name = "nomeProdottoDataGridViewTextBoxColumn";
-            this.nomeProdottoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // prezzoProdottoDataGridViewTextBoxColumn
-            // 
-            this.prezzoProdottoDataGridViewTextBoxColumn.DataPropertyName = "PrezzoProdotto";
-            this.prezzoProdottoDataGridViewTextBoxColumn.HeaderText = "PrezzoProdotto";
-            this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
-            this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // ImmagineProdotto
-            // 
-            this.ImmagineProdotto.DataPropertyName = "ImmagineProdotto";
-            this.ImmagineProdotto.HeaderText = "ImmagineProdotto";
-            this.ImmagineProdotto.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.ImmagineProdotto.Name = "ImmagineProdotto";
-            this.ImmagineProdotto.ReadOnly = true;
             // 
             // prodottoBindingSource1
             // 
@@ -226,6 +205,30 @@ namespace ServizioConsegne
             this.label1.Size = new System.Drawing.Size(102, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome prodotto\r\n";
+            // 
+            // nomeProdottoDataGridViewTextBoxColumn
+            // 
+            this.nomeProdottoDataGridViewTextBoxColumn.DataPropertyName = "NomeProdotto";
+            this.nomeProdottoDataGridViewTextBoxColumn.HeaderText = "NomeProdotto";
+            this.nomeProdottoDataGridViewTextBoxColumn.Name = "nomeProdottoDataGridViewTextBoxColumn";
+            this.nomeProdottoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // prezzoProdottoDataGridViewTextBoxColumn
+            // 
+            this.prezzoProdottoDataGridViewTextBoxColumn.DataPropertyName = "PrezzoProdotto";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.prezzoProdottoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.prezzoProdottoDataGridViewTextBoxColumn.HeaderText = "PrezzoProdotto";
+            this.prezzoProdottoDataGridViewTextBoxColumn.Name = "prezzoProdottoDataGridViewTextBoxColumn";
+            this.prezzoProdottoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ImmagineProdotto
+            // 
+            this.ImmagineProdotto.DataPropertyName = "ImmagineProdotto";
+            this.ImmagineProdotto.HeaderText = "ImmagineProdotto";
+            this.ImmagineProdotto.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.ImmagineProdotto.Name = "ImmagineProdotto";
+            this.ImmagineProdotto.ReadOnly = true;
             // 
             // Administrator
             // 

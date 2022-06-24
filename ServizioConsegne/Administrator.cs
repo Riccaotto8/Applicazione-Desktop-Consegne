@@ -24,13 +24,12 @@ namespace ServizioConsegne
         {
             indexRow = e.RowIndex;
 
-            try
+            if(indexRow >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[indexRow];
                 textBox1.Text = row.Cells[0].Value.ToString();
                 textBox2.Text = row.Cells[1].Value.ToString();
             }
-            catch (IndexOutOfRangeException) { }
 
 
             pictureBox1.Image = ImmagineProdotto.Image;
