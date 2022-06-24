@@ -76,7 +76,7 @@ namespace ServizioConsegne
             Hide();
             var login = new Login();
             login.ShowDialog();
-            Close();
+            Show();
         }
 
         //Aggiornamento della quantità

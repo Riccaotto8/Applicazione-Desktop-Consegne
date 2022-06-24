@@ -142,7 +142,7 @@ namespace ServizioConsegne
                     Stream array = new MemoryStream((byte[])row["ImmagineProdotto"]);
                     var Prodotto = new Prodotto
                     {
-                        Chiave = Convert.ToInt32(row["IDRow"]),
+                        Chiave = Convert.ToInt32(row["IDMenu"]),
                         NomeProdotto = (string)row["NomeProdotto"],
                         PrezzoProdotto = Convert.ToDecimal(row["PrezzoProdotto"]),
                         ImmagineProdotto = new Bitmap(array)
